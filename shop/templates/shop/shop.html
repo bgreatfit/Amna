@@ -1,0 +1,220 @@
+<!doctype html>
+{% load static %}
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Amna| {{cat.name}}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% include 'shop/csslink.html' %}
+</head>
+
+<body> 
+
+    <!-- Preloader Start -->
+    <div class="ft-preloader active">
+        <div class="ft-preloader-inner h-100 d-flex align-items-center justify-content-center">
+            <div class="ft-child ft-bounce1"></div>
+            <div class="ft-child ft-bounce2"></div>
+            <div class="ft-child ft-bounce3"></div>
+        </div>
+    </div>
+    <!-- Preloader End -->
+
+    <!-- Main Wrapper Start -->
+    <div class="wrapper">
+        <!-- Header Start -->
+        {%  include 'shop/header.html'  %}
+
+        <!-- Header End -->
+
+        <!-- Breadcrumb area Start -->
+        <section class="page-title-area bg-color" data-bg-color="#f4f4f4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <!-- <h1 class="page-title">Shop Left Sidebar</h1> -->
+                        <br><br><br><br><br><br>
+                        <ul class="breadcrumb">
+                            <li><a href="/">Home</a></li>
+                            <li class="current"><span>Products</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Breadcrumb area End -->
+
+        <!-- Main Content Wrapper Start -->
+        <div  class="main-content-wrapper">
+            <div class="shop-page-wrapper ptb--80">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-9 col-lg-8 order-lg-2 mb-md--50">
+                            <div class="shop-toolbar mb--50">
+                                <div class="row align-items-center">
+                                    <div class="col-md-5 mb-sm--30 mb-xs--10">
+                                        <div class="shop-toolbar__left">
+                                            <div class="product-ordering">
+                                                <select class="product-ordering__select nice-select">
+                                                    <option value="0">Default Sorting</option>
+                                                    <option value="1">Relevance</option>
+                                                    <option value="2">Name, A to Z</option>
+                                                    <option value="3">Name, Z to A</option>
+                                                    <option value="4">Price, low to high</option>
+                                                    <option value="5">Price, high to low</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="shop-toolbar__right">
+                                            <p class="product-pages">Showing Result  08 Among  72</p>
+                                            <div class="product-view-mode ml--50 ml-xs--0">
+                                                <a class="active" href="#" data-target="grid">
+                                                    <img src="{% static 'home/assets/img/icons/grid.png' %}" alt="Grid">
+                                                </a>
+                                                <a href="#" data-target="list">
+                                                    <img src="{% static 'home/assets/img/icons/list.png' %}" alt="Grid">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="shop-products">
+                                <div class="row">
+
+                                    {% for i in products %}
+                                    <div class="col-xl-4 col-sm-6 mb--50">
+                                        <div class="payne-product">
+                                            <div class="product__inner">
+                                                <div class="product__image">
+                                                    <figure class="product__image--holder">
+                                                        <img src="{{i.image.url}}" alt="Product">
+                                                    </figure>
+                                                    <a href="product-details.html" class="product__overlay"></a>
+                                                    <div class="product__action">
+                                                        <a data-toggle="modal" data-target="#productModal" class="action-btn">
+                                                            <i class="fa fa-eye"></i>
+                                                            <span class="sr-only">Quick View</span>
+                                                        </a>
+                                                        <a href="wishlist.html" class="action-btn">
+                                                            <i class="fa fa-heart-o"></i>
+                                                            <span class="sr-only">Add to wishlist</span>
+                                                        </a>
+                                                        <a href="compare.html" class="action-btn">
+                                                            <i class="fa fa-repeat"></i>
+                                                            <span class="sr-only">Add To Compare</span>
+                                                        </a>
+                                                        <a href="cart.html" class="action-btn">
+                                                            <i class="fa fa-shopping-cart"></i>
+                                                            <span class="sr-only">Add To Cart</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="product__info">
+                                                    <div class="product__info--left">
+                                                        <h3 class="product__title">
+                                                            <a href="product-details.html">{{i.name}}</a>
+                                                        </h3>
+                                                        <div class="product__price">
+                                                            <span class="money">{{i.price|floatformat:"2"}}</span>
+                                                            <span class="sign">&#8358;</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product__info--right">
+                                                        <span class="product__rating">
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+                            <nav class="pagination-wrap">
+                                <ul class="pagination">
+                                    <li><span class="page-number current">1</span></li>
+                                    <li><a href="#" class="page-number">2</a></li>
+                                    <li><span class="dot"></span></li>
+                                    <li><span class="dot"></span></li>
+                                    <li><span class="dot"></span></li>
+                                    <li><a href="#" class="page-number">16</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 order-lg-1">
+                            <aside class="shop-sidebar">
+                                <div class="shop-widget mb--40">
+                                    <h3 class="widget-title mb--25">Category</h3>
+                                    <ul class="widget-list category-list">
+
+                                    {% for i in categories %}
+
+                                        <li>
+                                            <a href="{% url "shop:categories" i.slug %}">
+                                                <span class="category-title">{{i.name}}</span>
+                                                <i class="fa fa-angle-double-right"></i>
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+
+                            
+                                    </ul>
+                                </div>
+                              
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main Content Wrapper Start -->
+
+        <!-- Footer Start-->
+        {% include 'shop/footer.html' %}
+
+        <!-- Footer End-->
+
+        <!-- OffCanvas Menu Start -->
+        {% include 'shop/mobile_nav.html' %}
+
+        <!-- OffCanvas Menu End -->
+
+        <!-- Mini Cart Start -->
+        {% include 'shop/mini_cart.html' %}
+
+        <!-- Mini Cart End -->
+
+        <!-- Qicuk View Modal Start -->
+        
+        <!-- Qicuk View Modal End -->
+
+        <!-- Global Overlay Start -->
+        <div class="global-overlay"></div>
+        <!-- Global Overlay End -->
+
+        <!-- Scroll To Top Start -->
+        <a class="scroll-to-top" href=""><i class="fa fa-angle-double-up"></i></a>
+        <!-- Scroll To Top End -->
+    </div>
+    <!-- Main Wrapper End -->
+
+    <!-- ************************* JS Files ************************* -->
+
+    <!-- jQuery JS -->
+    {% include 'shop/jslink.html' %}
+</body>
+
+</html>

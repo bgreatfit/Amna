@@ -1,0 +1,553 @@
+<!doctype html>
+{% load static %}
+{% load humanize %}
+
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Amna shop</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% include 'shop/csslink.html' %}
+
+</head>
+
+<body>
+
+    <!-- Preloader Start -->
+    <div class="ft-preloader active">
+        <div class="ft-preloader-inner h-100 d-flex align-items-center justify-content-center">
+            <div class="ft-child ft-bounce1"></div>
+            <div class="ft-child ft-bounce2"></div>
+            <div class="ft-child ft-bounce3"></div>
+        </div>
+    </div>
+    <!-- Preloader End -->
+ 
+    <!-- Main Wrapper Start -->
+    <div class="wrapper">
+        <!-- Header Start -->
+      {%  include 'shop/header.html'  %}
+        <!-- Header End -->
+        <br><br><br>
+        <!-- Main Content Wrapper Start -->
+        <main class="main-content-wrapper">
+            <!-- Slider area Start -->
+            <section class="homepage-slider mb--11pt5">
+                <div class="element-carousel slick-right-bottom" data-slick-options='{
+                    "slidesToShow": 1, 
+                    "dots": true
+                }'>
+                    {% for i in products %}
+                    <div class="item">
+                        <div class="single-slide d-flex align-items-center bg-image"
+                            data-bg-image="{% static 'home/assets/img/slider/slider-bg-01.jpg' %}">
+                            <div class="container">
+                                <div class="row align-items-center no-gutters w-100">
+                                    <div class="col-lg-6 col-md-8">
+                                        <div class="slider-content">
+                                            <div class="slider-content__text mb--95 md-lg--80 mb-md--40 mb-sm--15">
+                                                <h3 class="text-uppercase font-weight-light" data-animation="fadeInUp"
+                                                    data-duration=".3s" data-delay=".3s">AMAZING PRODUCT!</h3>
+                                                <h1 class="heading__primary mb--40 mb-md--20" data-animation="fadeInUp"
+                                                    data-duration=".3s" data-delay=".3s">{{i.name}}</h1>
+                                                <p class="font-weight-light" data-animation="fadeInUp"
+                                                    data-duration=".3s" data-delay=".3s">{{i.short_description}}</p>
+                                            </div>
+                                            <div class="slider-content__btn">
+                                                <a href="{% url "shop:product_view" %}" class="btn-link" data-animation="fadeInUp"
+                                                    data-duration=".3s" data-delay=".6s">Shop Now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 offset-lg-2 col-md-4">
+                                        <figure class="slider-image d-none d-md-block">
+                                            <img src="{{i.image.url}}" alt="Slider Image">
+                                        </figure>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+             
+                </div>
+            </section>
+            <!-- Slider area End -->
+
+            <!-- Featured Product Area Start -->
+
+            {% if featued_last %}
+            <section class="featured-product-area mb--10pt8">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="sr-only">Featured Product</h2>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+
+                        <div class="col-md-6 mb-sm--50">
+                            <div class="featured-product">
+                                <div class="featured-product__inner info-center">
+                                    <figure class="featured-product__image">
+                                        <img src="{{featued_first.image.url}}" alt="Featured Product">
+                                    </figure>
+                                    <div class="featured-product__info wow pbounceInLeft" data-wow-delay=".3s" data-wow-duration="1s">
+                                        <div class="featured-product__info-inner">
+                                            <h4 class="featured-product__text">Amazing Product!</h4>
+                                            <h2 class="featured-product__name">{{featued_first.name}}</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <div class="featured-product">
+                                <div class="featured-product__inner info-left-bottom">
+                                    <figure class="featured-product__image">
+                                        <img src="{{featued_last.image.url}}" alt="Featured Product">
+                                    </figure>
+                                    <div class="featured-product__info wow pbounceInDown" data-wow-duration="1s">
+                                        <div class="featured-product__info-inner rotated-info">
+                                            <h4 class="featured-product__text">Special Offer <strong>{{featued_last.percent_off_deal}}}%</strong> Off</h4>
+                                            <h2 class="featured-product__name">{{featued_last.name}}</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {% endif %}
+            <!-- Featured Product Area End -->
+
+            <!-- Product Area Start -->
+            <section class="product-area mb--50 mb-xl--40 mb-lg--25 mb-md--30 mb-sm--20 mb-xs--15">
+                <div class="container">
+                    <div class="row mb--42">
+                        <div class="col-lg-5 col-sm-10">
+                            <h2 class="heading__secondary">NEW ARRIVALS</h2>
+                            <p>Neque porro quisquam est, qui dolorem ipsum quia dolor ipisci velit, sed quia non numquam
+                                eius modi </p>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                      {%  for i in products %}
+                        <div class="col-lg-3 col-md-4 col-sm-6 mb--65 mb-md--50">
+                            <div class="payne-product">
+                                <div class="product__inner">
+                                    <div class="product__image">
+                                        <figure class="product__image--holder">
+                                            <img src="{{i.image.url}}" alt="Product">
+                                        </figure>
+                                        <a href="{% url "shop:detail" i.slug %}" class="product-overlay"></a>
+                                        <div class="product__action">
+                                            <a data-toggle="modal" data-target="#productModal" class="action-btn">
+                                                <i class="fa fa-eye"></i>
+                                                <span class="sr-only">Quick View</span>
+                                            </a>
+                             
+                                            <a href="{% url "shop:cart" i.slug %}" class="action-btn">
+                                                <i class="fa fa-shopping-cart"></i>
+                                                <span class="sr-only">Add To Cart</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="product__info">
+                                        <div class="product__info--left">
+                                            <h3 class="product__title">
+                                                <a href="{% url "shop:detail" i.slug %}">{{i.name}}</a>
+                                            </h3>
+                                            <div class="product__price">
+                                                <span class="money">{{i.price |floatformat:"2"|intcomma}}</span>
+                                                <span class="sign">&#8358;</span>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="product__info--right">
+                                            <span class="product__rating">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </span>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a href="{% url "shop:cart" i.slug %}" class="action-btn">
+                                    <i class="fa fa-shopping-cart">Cart</i>
+                                    <span class="sr-only">Cart</span>
+                                </a>
+                        </div>
+                      {%  endfor %}  
+                    </div>
+                </div>
+            </section>
+            <!-- Product Area End -->
+
+            <!-- Countdown Product Area Start -->
+            {% if ctdown %}
+            <div class="limited-product-area mb--11pt5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 mb-md--40 mb-sm--45">
+                            <div class="limited-product__image">
+                                <div class="limited-product__title">
+                                    <h2>{{ctdown.name}}</h2>
+                                </div>
+                                <div class="limited-product__large-image">
+                                    <div class="element-carousel main-slider" data-slick-options='{
+                                        "slidesToShow": 1,
+                                        "asNavFor": ".nav-slider"
+                                    }'>
+                                        <div class="item">
+                                            <figure>
+                                                <img src="{{ctdown.main_image_slide1.url}}"
+                                                    alt="Countdown Product">
+                                            </figure>
+                                        </div>
+                                        <div class="item">
+                                            <figure>
+                                                <img src="{{ctdown.main_image_slide2.url}}"
+                                                    alt="Countdown Product">
+                                            </figure>
+                                        </div>
+                                        <div class="item">
+                                            <figure>
+                                                <img src="{{ctdown.main_image_slide3.url}}"
+                                                    alt="Countdown Product">
+                                            </figure>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="limited-product__nav-image">
+                                    <div class="element-carousel nav-slider" data-slick-options='{
+                                        "spaceBetween": 25,
+                                        "slidesToShow": 3,
+                                        "vertical": true,
+                                        "focusOnSelect": true,
+                                        "asNavFor": ".main-slider"
+                                    }' 
+                                    data-slick-responsive='[
+                                        {"breakpoint": 576, "settings": { "vertical": false }}
+                                    ]'
+                                    >
+                                        <div class="item">
+                                            <figure>
+                                                <img src="{{ctdown.img_1.url}}"
+                                                    alt="Product Nav Image">
+                                            </figure>
+                                        </div>
+                                        <div class="item">
+                                            <figure>
+                                                <img src="{{ctdown.img_2.url}}"
+                                                    alt="Product Nav Image">
+                                            </figure>
+                                        </div>
+                                        <div class="item">
+                                            <figure>
+                                                <img src="{{ctdown.img_3.url}}"
+                                                    alt="Product Nav Image">
+                                            </figure>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-5 offset-xl-1 col-lg-6">
+                            <div class="limited-product__info">
+                                <h2 class="limited-product__name">
+                                    <a href="#">{{ctdown.name}}</a>
+                                </h2>
+                                <p class="limited-product__desc">{{ctdown.description}} </p>
+                                <div class="d-flex align-items-center">
+                                    <div class="limited-product__price">
+                                        <span class="money">{{ctdown.price|floatformat:"2"|intcomma }}</span>
+                                        <span class="sign">&#8358; </span>
+                                    </div>
+                                    <span class="limited-product__rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </span>
+                                </div>
+                                <h3 class="limited-product__subtitle">BEST DEAL, LIMITED TIME OFFER GET YOUR’S NOW!</h3>
+                                <div class="limited-product__countdown">
+                                    <div class="countdown-wrap">
+                                        <div class="countdown" data-countdown="{{ctdown.count_down_date}}" data-format="short">
+                                            <div class="countdown__item">
+                                                <span class="countdown__time daysLeft"></span>
+                                                <span class="countdown__text daysText"></span>
+                                            </div>
+                                            <div class="countdown__item">
+                                                <span class="countdown__time hoursLeft"></span>
+                                                <span class="countdown__text hoursText"></span>
+                                            </div>
+                                            <div class="countdown__item">
+                                                <span class="countdown__time minsLeft"></span>
+                                                <span class="countdown__text minsText"></span>
+                                            </div>
+                                            <div class="countdown__item">
+                                                <span class="countdown__time secsLeft"></span>
+                                                <span class="countdown__text secsText"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="{% url "shop:product_view" %}" class="btn-link">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            <!-- Countdown Product Area End -->
+
+            <!-- Featured Product Area Start -->
+            <!-- <section class="featured-product-area mb--11pt5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="sr-only">Featured Product</h2>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-md-6 mb-sm--50">
+                            <div class="featured-product">
+                                <div class="featured-product__inner info-right-bottom">
+                                    <figure class="featured-product__image">
+                                        <img src="{% static 'home/assets/img/products/product-14-500x575.jpg' %}" alt="Featured Product">
+                                    </figure>
+                                    <div class="featured-product__info wow pbounceInDown" data-wow-delay=".6s" data-wow-duration=".8s">
+                                        <div class="featured-product__info-inner rotated-info">
+                                            <h4 class="featured-product__text">Special Offer <strong>39%</strong> Off</h4>
+                                            <h2 class="featured-product__name">Feedo Bag</h2>
+                                        </div>
+                                    </div>
+                                    <span class="featured-product__badge badge-top-left">53% off</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="featured-product">
+                                <div class="featured-product__inner info-center">
+                                    <figure class="featured-product__image">
+                                        <img src="{% static 'home/assets/img/products/product-15-500x466.jpg' %}" alt="Featured Product">
+                                    </figure>
+                                    <div class="featured-product__info wow pbounceInLeft" data-wow-delay=".3s" data-wow-duration=".8s">
+                                        <div class="featured-product__info-inner">
+                                            <h4 class="featured-product__text">Mega Sale Offer</h4>
+                                            <h2 class="featured-product__name">Maxica Bag</h2>
+                                        </div>
+                                    </div>
+                                    <span class="featured-product__badge">53% off</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section> -->
+            <!-- Featured Product Area End -->
+
+            <section class="method-area mb--11pt5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="sr-only">Methods</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-sm--50">
+                            <div class="method-box shipment-method">
+                                <i class="flaticon-truck"></i>
+                                <h3>Free Home Delivery</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-sm--50">
+                            <div class="method-box money-back-method">
+                                <i class="flaticon-money"></i>
+                                <h3>MONEY BACK GUARANTEE</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="method-box support-method">
+                                <i class="flaticon-support"></i>
+                                <h3>SUPORT 24/7</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <!-- Main Content Wrapper End -->
+
+        <!-- Footer Start-->
+      {% include 'shop/footer.html' %}
+        <!-- Footer End-->
+
+        <!-- OffCanvas Menu Start -->
+      {% include 'shop/mobile_nav.html' %}
+        <!-- OffCanvas Menu End -->
+
+        <!-- Mini Cart Start -->
+        {% include 'shop/mini_cart.html' %}
+        <!-- Mini Cart End -->
+
+        <!-- Qicuk View Modal Start -->
+        <!-- <div class="modal fade product-modal" id="productModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="flaticon-cross"></i></span>
+                        </button>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="element-carousel slick-vertical-center" data-slick-options='{
+                                    "slidesToShow": 1,
+                                    "slidesToScroll": 1,
+                                    "arrows": true,
+                                    "prevArrow": {"buttonClass": "slick-btn slick-prev", "iconClass": "fa fa-angle-double-left" },
+                                    "nextArrow": {"buttonClass": "slick-btn slick-next", "iconClass": "fa fa-angle-double-right" }
+                                }'>
+                                <div class="item">
+                                    <figure class="product-gallery__image">
+                                        <img src="{% static 'home/assets/img/products/product-03-270x300.jpg' %}" alt="Product">
+                                        <span class="product-badge sale">Sale</span>
+                                    </figure>
+                                </div>
+                                <div class="item">
+                                    <figure class="product-gallery__image">
+                                        <img src="assets/img/products/product-04-270x300.jpg" alt="Product">
+                                        <span class="product-badge sale">Sale</span>
+                                    </figure>
+                                </div>
+                                <div class="item">
+                                    <figure class="product-gallery__image">
+                                        <img src="assets/img/products/product-05-270x300.jpg" alt="Product">
+                                        <span class="product-badge sale">Sale</span>
+                                    </figure>
+                                </div>
+                                <div class="item">
+                                    <figure class="product-gallery__image">
+                                        <img src="assets/img/products/product-06-270x300.jpg" alt="Product">
+                                        <span class="product-badge sale">Sale</span>
+                                    </figure>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="modal-box product-summary">
+                                    <div class="product-navigation text-right mb--20">
+                                        <a href="#" class="prev"><i class="fa fa-angle-double-left"></i></a>
+                                        <a href="#" class="next"><i class="fa fa-angle-double-right"></i></a>
+                                    </div>
+                                    <div class="product-rating d-flex mb--20">
+                                        <div class="star-rating star-four">
+                                            <span>Rated <strong class="rating">5.00</strong> out of 5</span>
+                                        </div>
+                                    </div>
+                                    <h3 class="product-title mb--20">Golden Easy Spot Chair.</h3>
+                                    <p class="product-short-description mb--20">Donec accumsan auctor iaculis. Sed suscipit
+                                        arcu ligula, at egestas magna molestie a. Proin ac ex maximus, ultrices justo eget,
+                                        sodales orci. Aliquam egestas libero ac turpis pharetra, in vehicula lacus
+                                        scelerisque. Vestibulum ut sem laoreet, feugiat tellus at, hendrerit arcu.</p>
+                                    <div class="product-price-wrapper mb--25">
+                                        <span class="money">$200.00</span>
+                                        <span class="price-separator">-</span>
+                                        <span class="money">$400.00</span>
+                                    </div>
+                                    <form action="#" class="variation-form mb--20">
+                                        <div class="product-size-variations d-flex align-items-center mb--15">
+                                            <p class="variation-label">Size:</p>
+                                            <div class="product-size-variation variation-wrapper">
+                                                <div class="variation">
+                                                    <a class="product-size-variation-btn selected" data-toggle="tooltip"
+                                                        data-placement="top" title="S">
+                                                        <span class="product-size-variation-label">S</span>
+                                                    </a>
+                                                </div>
+                                                <div class="variation">
+                                                    <a class="product-size-variation-btn" data-toggle="tooltip"
+                                                        data-placement="top" title="M">
+                                                        <span class="product-size-variation-label">M</span>
+                                                    </a>
+                                                </div>
+                                                <div class="variation">
+                                                    <a class="product-size-variation-btn" data-toggle="tooltip"
+                                                        data-placement="top" title="L">
+                                                        <span class="product-size-variation-label">L</span>
+                                                    </a>
+                                                </div>
+                                                <div class="variation">
+                                                    <a class="product-size-variation-btn" data-toggle="tooltip"
+                                                        data-placement="top" title="XL">
+                                                        <span class="product-size-variation-label">XL</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a href="" class="reset_variations">Clear</a>
+                                    </form>
+                                    <div class="product-action d-flex flex-sm-row align-items-sm-center flex-column align-items-start mb--30">
+                                        <div class="quantity-wrapper d-flex align-items-center mr--30 mr-xs--0 mb-xs--30">
+                                            <label class="quantity-label" for="qty">Quantity:</label>
+                                            <div class="quantity">
+                                                <input type="number" class="quantity-input" name="qty" id="qty" value="1"
+                                                    min="1">
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-shape-square btn-size-sm"
+                                            onclick="window.location.href='cart.html'">
+                                            Add To Cart
+                                        </button>
+                                    </div>
+                                    <div class="product-footer-meta">
+                                        <p><span>Category:</span>
+                                            <a href="shop.html">Full Sweater</a>,
+                                            <a href="shop.html">SweatShirt</a>,
+                                            <a href="shop.html">Jacket</a>,
+                                            <a href="shop.html">Blazer</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <!-- Qicuk View Modal End -->
+
+        <!-- Global Overlay Start -->
+        <div class="global-overlay"></div>
+        <!-- Global Overlay End -->
+
+        <!-- Scroll To Top Start -->
+        <a class="scroll-to-top" href=""><i class="fa fa-angle-double-up"></i></a>
+        <!-- Scroll To Top End -->
+    </div>
+    <!-- Main Wrapper End -->
+
+
+    <!-- ************************* JS Files ************************* -->
+
+    <!-- jQuery JS -->
+ {% include 'shop/jslink.html' %}
+</body>
+
+</html>

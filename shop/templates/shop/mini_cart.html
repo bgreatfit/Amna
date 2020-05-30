@@ -1,0 +1,42 @@
+{% load humanize  %}
+
+<aside class="mini-cart" id="miniCart">
+            <div class="mini-cart-wrapper">
+                <div class="mini-cart__close">
+                    <a href="#" class="btn-close"><i class="flaticon-cross"></i></a>
+                </div>
+                <div class="mini-cart-inner">
+                    <h3 class="mini-cart__heading mb--45">Shopping Cart</h3>
+                    <div class="mini-cart__content">
+                        <ul class="mini-cart__list">
+
+                            {%  for i in cart_products %}
+
+                            <li class="mini-cart__product">
+                                <a href="#" class="mini-cart__product-remove">
+                                    <i class="flaticon-cross"></i>
+                                </a>
+                                <div class="mini-cart__product-image">
+                                    
+                                    <img src="{{i.image.url}}" alt="products">
+                                </div>
+                                <div class="mini-cart__product-content">
+                                    <a class="mini-cart__product-title" href="{% url "shop:detail" i.slug  %}">{{i.name}}</a>
+                                    <span class="mini-cart__product-quantity">&#8358;  {{ i.price|floatformat:"2"|intcomma }}</span>
+                                </div>
+                            </li>
+                            {% endfor  %}
+
+                        </ul>
+                        <div class="mini-cart__total">
+                            <span>Subtotal</span>
+                            <span class="ammount">&#8358;  {{ cart_products_sum|floatformat:"2"|intcomma }}</span>
+                        </div>
+                        <div class="mini-cart__buttons">
+                            <a href="{% url 'shop:mycart' %}" class="btn btn-fullwidth btn-bg-primary mb--20">View Cart</a>
+                            <a href="{% url "shop:checkout"  %}" class="btn btn-fullwidth btn-bg-primary">Checkout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Verify one time password</title>
+
+    <script>
+        function show(){
+            $("#myModal").modal('show');
+        }
+
+    </script>
+</head>
+<body onload="show()">
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">
+                            <i class="fa fa-cc-visa" aria-hidden="true"></i>
+                            <i class="fa fa-cc-mastercard" aria-hidden="true"></i>
+                            <i class="fa fa-cc-amex"></i>
+                            <i class="fa fa-cc-discover" aria-hidden="true"></i>
+                        verify payment
+                      </h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form action="{% url "shop:validate" tx_id  %}" method="post">
+                            {% csrf_token %}
+                    <div class="modal-body">
+                      <label for="">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                            Enter your one time password
+                      </label>
+                      <input name="otp"  type="password" class="form-control">
+                    </div>
+                    <div class="modal-footer">
+                      <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                      <button type="submit" class="btn btn-primary">Verify</button>
+                    </div>
+                </form>
+                  </div>
+                </div>
+              </div>
+    
+</body>
+</html>

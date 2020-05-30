@@ -1,0 +1,58 @@
+  <aside class="offcanvas-navigation" id="offcanvasnav">
+            <div class="offcanvas-navigation__inner">
+                <a href="" class="btn-close">
+                    <i class="flaticon-cross"></i>
+                    <span class="sr-only">Close Offcanvas Navigtion</span>
+                </a>
+                <div class="offcanvas-navigation__top">
+                    <ul class="offcanvas-menu">
+                        <li class="has-children">
+                            <a href="/">
+                                <span class="mm-text">Home</span>
+                            </a>
+                         
+                        </li>
+                        <li>
+                            <a href="{% url "shop:product_view" %}">
+                                <span class="mm-text">New Arrivals</span>
+                            </a>
+                        </li>
+                        <li class="has-children">
+                            <a href="#">
+                                <span class="mm-text">Shops</span>
+                            </a>
+                            <ul class="sub-menu">
+                                {% for i in shops %}
+                                <li class="has-children">
+                                    <a href="#">
+                                        <span class="overlay-menu__title">{{i.name}}</span>
+                                    </a>
+                                    <ul class="sub-menu">
+
+                                        {% for cat in i.categories.all %}
+                                        <li>
+                                            <a href="{% url "shop:categories" cat.slug %}">
+                                                <span class="mm-text">{{cat.name}}</span>
+                                            </a>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        <li class="has-children">
+                            <a href="#">
+                                <span class="mm-text">Track your order</span>
+                            </a>
+                          
+                        </li>
+                        <li>
+                            <a href="contact-us.html">
+                                <span class="mm-text">Contact Us</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
